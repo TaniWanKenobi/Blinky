@@ -111,7 +111,7 @@ You will now need to go through and find all of your components. Luckily, we alr
 - **C58592** (this is a 470 ohm resistor)
 - **C118912** (this is a potentiometer otherwise known as a variable resistor. You can use this to control the speed of the flashes)
 
-- **NE555P** (this is your 555 IC which is famous in circuitry)
+- **[NE555P](https://www.ti.com/lit/ds/symlink/ne555.pdf)** (this is your 555 IC which is famous in circuitry)
 - **CD4017** (this is your main 4017 IC. It controls all of the LED’s flashing given an input from the 555)
 - **MountingHole_Pad** (this is your header, or little pins which you will use to power your circuit. You will need 2 off these. Additionally, there is another little header which you can use for debugging your circuit)
 - **C_Polarized** (this is an electrolytic capacitor, it is directional so be careful!)
@@ -133,6 +133,45 @@ In the kit, you will be given
 - 10x Blue LED's
 
 Here is a good point to remind you. If you ever need help, ask in #blueprint-support on the Hack Club Slack. 
+
+## How do these work?
+
+**First, let's take a look at the [555 timer](https://www.instructables.com/555-Timer/#step6).** There are three different modes:
+
+- Monostable Mode, or One Shot, is great for creating time delays. This is almost used as a stopwatch; you press a button (trigger), and the timer turns ON for a set amount of time, then automatically turns OFF. 
+
+- ** Astable Mode produces a continuous oscillating signal. In this configuration, the 555 timer repeatedly toggles its output between high and low states, with both the frequency and pulse width adjustable. Essentially, this mode mode makes the timer act like a blinking light. It keeps switching ON and OFF again and again, without needing you to press anything. We will be useing this mode, as it lets the LED blink at a speed we can adjust.**
+
+- Bistable Mode causes the 555 timer to toggle its output between high and low states depending on the state of two inputs. Essentially, it acts like a toggle switch. Foe example, you can press button A to turn the LED ON, then press button B to turn the LED off.
+
+This is the general schematic for Astable Mode:
+
+![F55UTLKH78T8OJF](https://github.com/user-attachments/assets/ca7259a8-c5da-4e9a-b017-76e3486fff61)
+
+At the end, this is what it should look like:
+
+![Astable Diagram]()
+
+Next, lets take a look at the 4017 IO expander. Due to the lack of GPIO on the 555 timer, we need a way to connect more LEDs. Thats where we use these IO expanders! We will connect as follows:
+- VDD to +5v
+- VSS to GND
+- CLK to Q from the NE555P 	(Clock input from 555 timer)
+- CLEK to GND (This is the clock inhibit, a control signal that pauses or freezes the operation of a digital circuit by blocking incoming clock pulses. We do not need this for this circuit. )
+- Reset to GND (This is the reset. When set HIGH, the counter immediately resets. )
+- Cout not connected (click Q, and connect it to the no-flag symbol. This would be used to connect more IO expanders, but we do not need this.)
+
+Next, connect GPIO Q0–Q9 to LEDs, and connect their GND to one resistor with the value of 470 Ω. This is because we need to limit the current reaching the LEDs. We can calculate the minimum resistance needed with the formula
+
+
+  
+In general, it is good practice to not wire everything directly. This makes it hard to read. Instead, use labels!
+
+For instance, we know that the battery pads connect to +5v ([5 volts of power](https://theengineeringmindset.com/what-is-voltage/)) and gnd (ground is connected to the negative terminal of a battery or power supply, acting as the main return path for current).
+
+Therefore, I connect the mounting holes as such:
+
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/131c8dfacde59ed5e224b156257712a6e735e49f_image.png)
+
 
 ## Place your components
 
