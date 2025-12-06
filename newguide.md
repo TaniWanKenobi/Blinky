@@ -73,7 +73,7 @@ Once your project is created, click into it on the project screen.
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/a73a0deeb8dbf8e604f0ebfda1f95f6f6ccd6daa_image.png)
 
-## Create your project on EasyEDA
+## Create your project on KiCad
 
 reate a new KiCad project by going:
 `File -> new project, and choosing your name/folder for the project` 
@@ -113,8 +113,7 @@ You will now need to go through and find all of your components. Luckily, we alr
 
 - **NE555P** (this is your 555 IC which is famous in circuitry)
 - **CD4017** (this is your main 4017 IC. It controls all of the LED’s flashing given an input from the 555)
-- **MountingHole_Pad** (this is your header, or little pins which you will use to power your circuit. You will need 2 off these)
-- **C81276** (this is another little header which you can use for debugging your circuit)
+- **MountingHole_Pad** (this is your header, or little pins which you will use to power your circuit. You will need 2 off these. Additionally, there is another little header which you can use for debugging your circuit)
 - **C_Polarized** (this is an electrolytic capacitor, it is directional so be careful!)
 - **C** (this is a normal capacitor)
 - **R** (this is a 1k ohm resistor and 470 ohm resistor)
