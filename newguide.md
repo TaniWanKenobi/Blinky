@@ -132,7 +132,7 @@ Here is a good point to remind you. If you ever need help, ask in #blueprint-sup
 
 First, we know that the battery pads connect to +5v ([5 volts of power](https://theengineeringmindset.com/what-is-voltage/)) and gnd (ground is connected to the negative terminal of a battery or power supply, acting as the main return path for current).
 
-Therefore, I connect the mounting holes as such:
+Therefore, I click `W` (for wire) and connect the mounting holes as such:
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/131c8dfacde59ed5e224b156257712a6e735e49f_image.png)
 
@@ -205,12 +205,8 @@ Unfortunately, the **CD4017** footprint is not included in KiCad by default. Let
 
 ---
 
-## Place your components
+## Create a Printed Circuit Board (PCB)
 
-Now that you have placed all of your components, you should arrange it as below. This will make it easier when you wire.
-
-- You can use ‘r’ to rotate them
-- Remember to save (Control-S or  ⌘-S) often !!!!
 
 To synchronize changes between your schematic and PCB layout in KiCad:
 
@@ -220,71 +216,28 @@ To synchronize changes between your schematic and PCB layout in KiCad:
 
 You can do this anytime you want to refresh the PCB with the latest schematic updates.
 
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/b86449f89ce3fbcc4dfb37cfea56d0e402fbd122__0B589CAB-0E7F-403F-90D3-7350DD6C9C88_.png)
+First, create a board outline. For this tutorial, **YOU NEED TO CUSTOMIZE YOUR BOARD WITH A CUSTOM OUTLINE AND ART**
 
-## Wire your components
+This is done by modifying the `Edge.Cuts` layer on the right side. 
 
-Now it's time to route the PCB! Hit X on your keyboard and hit anything with a thin blue line poking out of it. It should dim the entire screen, show you which direction you need to go with a thin blue line and highlight the destination:
+There are many ways to do this. You can either manually draw it with the given menue.
 
-![example here]()
+I found the default outline options limiting and wanted to create something more complex.  
+To do this, I:
 
-Join the highlighted points together. If there isn't enough space on the front side, or there is a trace already present that is blocking you, you can route on the back side by clicking B.Cu on the right toolbar. At the same time, if you want to change sides during routing, press V and a via shall be added, which will transfer your trace to the other side of the board. **Wires and pads of different colors (except golden) can't be connected together directly! You must via to the other side.**
+1. Took a Batman image.  
+2. Converted the image into a DXF file using an image-to-DXF converter.  
+3. Imported the DXF file into KiCad.  
+4. Created a 100x100 mm box as a reference.  
+5. Used the measuring tool to determine the correct scale.  
+6. Scaled the outline down so it fit within 100 mm.  
 
+At the end, it may look something like this:
 
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/06ae2032f870f668a088dafecf0d36b64cacef1e_image.png)
 
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/778ce6cb2c018696f8354aabb15b7112f4873a99__BBC27CE3-7A26-4E46-AFA7-E725BDBB9552_.png)
+**Make sure to always keep your board below 100x100mm!**
 
-Your schematic is complete! 
-
-Reminder: ⌘+ S OR Ctrl + S to save your design often!
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5aaf335b6f95cb2efb09573d6b4c74a52d61f8ed__534392E2-01CF-42B4-B1E8-7F2185EB0ACD_.png)
-
-## Create a Printed Circuit Board (PCB)
-
-Now, its time to convert your schematic (circuit connection guide) into a PCB (the physical layout of the connections).
-
-At the top of your screen, click 
-
-**Design > Convert Schematic to PCB**
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/111cd17b9f2a14453f1ba78ca456d652ccda152b__D27CDDB5-8BEC-4FF4-880A-04901B93BCE1_.png)
-
-<aside>
-
-Note if you are trying to make changes to your PCB later:
-
-Use Update PCB! It preserves your PCB layout!
-
-</aside>
-
-## Create an outline for your PCB
-
-For this tutorial, I will be making a rectangular for simplicity sake. However, 
-
-**YOU NEED TO CUSTOMIZE YOUR BOARD WITH A CUSTOM OUTLINE AND ART**
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/d3c10a29dc99ea3ab31c5ff7d3d893319974b98d__BA6D32FD-B511-4C8B-AAD5-D6D800E09D17_.png)
-
-First, select the “Board Outline” on the sidebar. 
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/9f20de70d8fa423169ec12cf1fb5fd9318276b63__1841ADE8-E6F4-47D0-8E13-D9BB8295298E_.png)
-
-Next, you can either make your own board outline using the “Line” and other features in the toolbar.
-
-…or you can find a custom DXF online to have a custom outline.
-
-File→Import→DXF
-
-(you can also convert an image to a DXF using an online converter such as convertio) 
-
-One thing about the DXF’s you may need to scale it online. Make sure to always keep your board below 100x100mm. 
-
-## PCB Layout
-
-Once you have your board outline, you need to organize and wire your components. You should get familiar with the PCB tools:
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/cac16711c0f9702ef11d943fd693658a2e30f9ed_image.png)
 
 A PCB is made out of multiple layers. Our boards are “two layer” meaning that they have two layers of copper wire. 
 
@@ -299,6 +252,26 @@ Substrate: The actual plastic (usually green) which makes up your board
 Via: the tunnels which connect the top and bottom copper layers
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c2ec73f247fdb1f466903fc86d345fe0f4b47b6f_image.png)
+
+- You can use ‘r’ to rotate them
+- Remember to save (Control-S or  ⌘-S) often !!!!
+
+Now it's time to route the PCB! Hit X on your keyboard and hit anything with a thin blue line poking out of it. It should dim the entire screen, show you which direction you need to go with a thin blue line and highlight the destination:
+
+![example here](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e56026795ef53593ec7e75e329f0bc7c9c9d71b6_image.png)
+
+Join the highlighted points together. If there isn't enough space on the front side, or there is a trace already present that is blocking you, you can route on the back side by clicking B.Cu on the right toolbar. At the same time, if you want to change sides during routing, press V and a via shall be added, which will transfer your trace to the other side of the board. **Wires and pads of different colors (except golden) can't be connected together directly! You must via to the other side.**
+
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/778ce6cb2c018696f8354aabb15b7112f4873a99__BBC27CE3-7A26-4E46-AFA7-E725BDBB9552_.png)
+
+Your routing is complete! 
+
+Reminder: ⌘+ S OR Ctrl + S to save your design often!
+
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5aaf335b6f95cb2efb09573d6b4c74a52d61f8ed__534392E2-01CF-42B4-B1E8-7F2185EB0ACD_.png)
+
+
+
 
 ## Place your components
 
