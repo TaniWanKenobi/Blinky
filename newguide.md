@@ -134,9 +134,17 @@ In the kit, you will be given
 
 Here is a good point to remind you. If you ever need help, ask in #blueprint-support on the Hack Club Slack. 
 
-## How do these work?
+## How do these work and how do I connect them?
 
-**First, let's take a look at the [555 timer](https://www.instructables.com/555-Timer/#step6).** There are three different modes:
+> In general, it is good practice to not wire everything directly. This makes it hard to read. Instead, use labels!
+
+First, we know that the battery pads connect to +5v ([5 volts of power](https://theengineeringmindset.com/what-is-voltage/)) and gnd (ground is connected to the negative terminal of a battery or power supply, acting as the main return path for current).
+
+Therefore, I connect the mounting holes as such:
+
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/131c8dfacde59ed5e224b156257712a6e735e49f_image.png)
+
+**Now, let's take a look at the [555 timer](https://www.instructables.com/555-Timer/#step6).** There are three different modes:
 
 - Monostable Mode, or One Shot, is great for creating time delays. This is almost used as a stopwatch; you press a button (trigger), and the timer turns ON for a set amount of time, then automatically turns OFF. 
 
@@ -160,37 +168,77 @@ Next, lets take a look at the 4017 IO expander. Due to the lack of GPIO on the 5
 - Reset to GND (This is the reset. When set HIGH, the counter immediately resets. )
 - Cout not connected (click Q, and connect it to the no-flag symbol. This would be used to connect more IO expanders, but we do not need this.)
 
-Next, connect GPIO Q0–Q9 to LEDs, and connect their GND to one resistor with the value of 470 Ω. This is because we need to limit the current reaching the LEDs. We can calculate the minimum resistance needed with the formula
+Next, connect GPIO Q0–Q9 to LEDs, and tie all of their cathodes together through a single 470 Ω resistor to ground. This resistor is needed to limit the current flowing through whichever LED is active at a given time. The minimum resistance can be estimated using the formula:
 
+R = (V_supply − V_f) / I
 
-  
-In general, it is good practice to not wire everything directly. This makes it hard to read. Instead, use labels!
+where:
+- V_supply = supply voltage (e.g., 5 V)
+- V_f = LED forward voltage (e.g., ~2 V for red, ~3 V for blue/white)
+- I = desired current (e.g., 5–15 mA)
 
-For instance, we know that the battery pads connect to +5v ([5 volts of power](https://theengineeringmindset.com/what-is-voltage/)) and gnd (ground is connected to the negative terminal of a battery or power supply, acting as the main return path for current).
+Power‑limiting resistors prevent excessive current that could damage the LED or the driving IC. In practice, standard resistor values such as 220 Ω, 330 Ω, or 470 Ω are commonly used depending on brightness and power budget. Lower resistance allows more current and brighter LEDs, while higher resistance reduces current, conserves power, and extends component life.
 
-Therefore, I connect the mounting holes as such:
+At the end, it should look something like this:
 
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/131c8dfacde59ed5e224b156257712a6e735e49f_image.png)
+![]()
 
+# Assigning Footprints in KiCad
+
+In general, footprints can be found by checking the component’s datasheet. A quick search online usually helps.  
+
+Unfortunately, the **CD4017** footprint is not included in KiCad by default. Let’s fix that!
+
+---
+
+## Steps to Add the CD4017 Footprint
+
+1. **Go to the Texas Instruments export site**  
+    [Texas Instruments CD4017BE Export Page](https://app.ultralibrarian.com/details/15b11d40-103f-11e9-ab3a-0a3560a4cccc/Texas-Instruments/CD4017BE)
+
+2. **Create an account**  
+   - Sign up or log in to Ultra Librarian.
+
+3. **Download the footprint**  
+   - Click **Download Now**  
+   - Select **KiCad** as the CAD format  
+   - Choose **KiCad v6+**  
+   - Download the file
+
+4. **Import into KiCad**  
+   - Open KiCad
+   - Click Preferences
+   - Click `Manage Footprint Libraries`
+   - Import! What I personally do is create a folder with all my custom imports. Find the .kicad_mod file, and put it into a .pretty folder. 
+
+---
 
 ## Place your components
 
 Now that you have placed all of your components, you should arrange it as below. This will make it easier when you wire.
 
 - You can use ‘r’ to rotate them
-- Use Copy and Paste when you need more, E.g. to make 10  LED’s
 - Remember to save (Control-S or  ⌘-S) often !!!!
+
+To synchronize changes between your schematic and PCB layout in KiCad:
+
+- Press **F8**  
+  *or*  
+- Click the **Update PCB from Schematic** button  
+
+You can do this anytime you want to refresh the PCB with the latest schematic updates.
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/b86449f89ce3fbcc4dfb37cfea56d0e402fbd122__0B589CAB-0E7F-403F-90D3-7350DD6C9C88_.png)
 
 ## Wire your components
 
-Don’t mess this up! Make sure your wiring matches the diagram below. The little red dots indicate that two wires are connected. Make sure that the wires which are supposed to pass over each other are not connected!
+Now it's time to route the PCB! Hit X on your keyboard and hit anything with a thin blue line poking out of it. It should dim the entire screen, show you which direction you need to go with a thin blue line and highlight the destination:
 
-- Click “w” or the wire button, or click on a terminal of a component
-- Wire together GND of all the LEDs
-- Check out Shortcut keys (Settings-> Shortcut key settings)
-- Remember to save (Control-S or  ⌘-S) often !!!!
+![example here]()
+
+Join the highlighted points together. If there isn't enough space on the front side, or there is a trace already present that is blocking you, you can route on the back side by clicking B.Cu on the right toolbar. At the same time, if you want to change sides during routing, press V and a via shall be added, which will transfer your trace to the other side of the board. **Wires and pads of different colors (except golden) can't be connected together directly! You must via to the other side.**
+
+
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/778ce6cb2c018696f8354aabb15b7112f4873a99__BBC27CE3-7A26-4E46-AFA7-E725BDBB9552_.png)
 
