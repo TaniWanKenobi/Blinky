@@ -12,7 +12,7 @@ We will all build this LED chaser which blinks 10 LEDs in a variable speed seque
 
 Here’s the schematic: 
 
-![](DO THIS)
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5447f846be0c0dfc8fb9e18855233e17eee82b6b_image.png)
 
 ## What we’ll be doing
 
@@ -94,22 +94,14 @@ Here are the components we will be using: (IC stands for Integrated Circuit)
 
 In schematic, things are represented as symbols. Here are the symbols for the components above:
 
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/7954638e239e12ca72a0be83b93372b2fe0ac937_image.png)
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c75477351563114ae06c0dc00b2fa508cf611273_image.png)
+
 
 In order to place components (aka symbols), you need to press `a` and search for a component  such as “NE555P”.
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/3e3b36d04734d421554efa639702cfa84b241388_image.png)
 
 You will now need to go through and find all of your components. Luckily, we already compiled a list of everything you need to place:
-- **C46749** (this is your 555 IC which is famous in circuitry)
-- **C32710674** (this is your main 4017 IC. It controls all of the LED’s flashing given an input from the 555)
-- **C492401** (this is your header, or little pins which you will use to power your circuit)
-- **C81276** (this is another little header which you can use for debugging your circuit)
-- **C62934** (this is an electrolytic capacitor, it is directional so be careful!)
-- **C249157** (this is another cap)
-- **C713997** (this is a 1k ohm resistor)
-- **C58592** (this is a 470 ohm resistor)
-- **C118912** (this is a potentiometer otherwise known as a variable resistor. You can use this to control the speed of the flashes)
 
 - **[NE555P](https://www.ti.com/lit/ds/symlink/ne555.pdf)** (this is your 555 IC which is famous in circuitry)
 - **CD4017** (this is your main 4017 IC. It controls all of the LED’s flashing given an input from the 555)
@@ -117,7 +109,7 @@ You will now need to go through and find all of your components. Luckily, we alr
 - **C_Polarized** (this is an electrolytic capacitor, it is directional so be careful!)
 - **C** (this is a normal capacitor)
 - **R** (this is a 1k ohm resistor and 470 ohm resistor)
-- **R_Trim** (this is a potentiometer otherwise known as a variable resistor. You can use this to control the speed of the flashes)
+- **RV** (this is a potentiometer otherwise known as a variable resistor. You can use this to control the speed of the flashes)
 
 > To change values of resisitors, double click the resistor, change the value, then click OK. 
 
@@ -136,7 +128,7 @@ Here is a good point to remind you. If you ever need help, ask in #blueprint-sup
 
 ## How do these work and how do I connect them?
 
-> In general, it is good practice to not wire everything directly. This makes it hard to read. Instead, use labels!
+> In general, it is good practice to not wire everything directly. This makes it hard to read. Instead, use [labels](https://www.baldengineer.com/kicad-bus-labels-and-global-labels.html)!
 
 First, we know that the battery pads connect to +5v ([5 volts of power](https://theengineeringmindset.com/what-is-voltage/)) and gnd (ground is connected to the negative terminal of a battery or power supply, acting as the main return path for current).
 
@@ -148,7 +140,7 @@ Therefore, I connect the mounting holes as such:
 
 - Monostable Mode, or One Shot, is great for creating time delays. This is almost used as a stopwatch; you press a button (trigger), and the timer turns ON for a set amount of time, then automatically turns OFF. 
 
-- ** Astable Mode produces a continuous oscillating signal. In this configuration, the 555 timer repeatedly toggles its output between high and low states, with both the frequency and pulse width adjustable. Essentially, this mode mode makes the timer act like a blinking light. It keeps switching ON and OFF again and again, without needing you to press anything. We will be useing this mode, as it lets the LED blink at a speed we can adjust.**
+- **Astable Mode produces a continuous oscillating signal. In this configuration, the 555 timer repeatedly toggles its output between high and low states, with both the frequency and pulse width adjustable. Essentially, this mode mode makes the timer act like a blinking light. It keeps switching ON and OFF again and again, without needing you to press anything. We will be useing this mode, as it lets the LED blink at a speed we can adjust.**
 
 - Bistable Mode causes the 555 timer to toggle its output between high and low states depending on the state of two inputs. Essentially, it acts like a toggle switch. Foe example, you can press button A to turn the LED ON, then press button B to turn the LED off.
 
@@ -158,7 +150,7 @@ This is the general schematic for Astable Mode:
 
 At the end, this is what it should look like:
 
-![Astable Diagram]()
+![Astable Diagram](https://hc-cdn.hel1.your-objectstorage.com/s/v3/f4258af8a265de6744357ac62db79e3c35fcb055_image.png)
 
 Next, lets take a look at the 4017 IO expander. Due to the lack of GPIO on the 555 timer, we need a way to connect more LEDs. Thats where we use these IO expanders! We will connect as follows:
 - VDD to +5v
@@ -181,7 +173,7 @@ Power‑limiting resistors prevent excessive current that could damage the LED o
 
 At the end, it should look something like this:
 
-![]()
+![4017](https://hc-cdn.hel1.your-objectstorage.com/s/v3/939f70e5de76b8bb28e6daf54a036b9cbc0bb3bd_image.png)
 
 # Assigning Footprints in KiCad
 
