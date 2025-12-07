@@ -202,6 +202,10 @@ Unfortunately, the **CD4017** footprint is not included in KiCad by default. Let
    - Click Preferences
    - Click `Manage Footprint Libraries`
    - Import! What I personally do is create a folder with all my custom imports. Find the .kicad_mod file, and put it into a .pretty folder. 
+   
+Your footprints should look something like this:
+
+![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/bf6e6b7ca1eeba39f6ddd680f6efa7a7b06cbfd4_image.png)
 
 ---
 
@@ -239,6 +243,8 @@ At the end, it may look something like this:
 **Make sure to always keep your board below 100x100mm!**
 
 
+## PCB Routing
+
 A PCB is made out of multiple layers. Our boards are “two layer” meaning that they have two layers of copper wire. 
 
 The layers include: 
@@ -252,6 +258,8 @@ Substrate: The actual plastic (usually green) which makes up your board
 Via: the tunnels which connect the top and bottom copper layers
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c2ec73f247fdb1f466903fc86d345fe0f4b47b6f_image.png)
+
+Place all of your components inside the Board Outline. Move components to shorten ratlines, which are are the straight blue lines. 
 
 - You can use ‘r’ to rotate them
 - Remember to save (Control-S or  ⌘-S) often !!!!
@@ -270,32 +278,6 @@ Reminder: ⌘+ S OR Ctrl + S to save your design often!
 
 ![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5aaf335b6f95cb2efb09573d6b4c74a52d61f8ed__534392E2-01CF-42B4-B1E8-7F2185EB0ACD_.png)
 
-
-
-
-## Place your components
-
-Place all of your components inside the Board Outline. Move components to shorten ratlines, which are are the straight blue lines. You can use ‘r’ to rotate.
-
-Remember to save (Control-S or  ⌘-S) often !!!!
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/066ff9acb3435c5bd772890417b8702c9edde7a7_image.png)
-
-(remember that your board outline, the purple lines, should not be a rectangle but some custom shape)
-
-## Wiring your components
-
-The ratlines (the blue straight lines) in-between your components is not the complete wiring. They are just telling you where connections should happen. 
-
-On the side bar, you can choose either top layer (red) or bottom layer (blue), or a combination of both to wire your components. 
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/8ea222f123d51cdd5bf2cac00b055ce98718d1d0_image.png)
-
-If it is impossible to make a connection in one layer, you can add a via. A via acts as a tunnel to connect between the two copper layers. As you are wiring you can click ‘v’ to place a via and switch to the other side.
-
-Your PCB is routed!
-
-![](https://hc-cdn.hel1.your-objectstorage.com/s/v3/a8846471c379ddc28fc84b366451824d841dfee6_image.png)
 
 ## Customization
 
