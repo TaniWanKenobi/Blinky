@@ -15,7 +15,7 @@ The Blinky Board is a colorful LED chaser that you can customize with your own P
 
 ## How can I make my own Blinky Board?
 
-I made this guide to teach people how to make a blinking circuit! It can be found [here](blinkyguide.md)
+I made this to teach people how to make a blinking circuit! It can be found [here](blinkyguide.md)
 
 Assembly instructions can be found [here](https://blueprint.hackclub.com/resources/blinky-assembly)
 
