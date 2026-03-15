@@ -22,14 +22,14 @@ Assembly instructions can be found [here](https://blueprint.hackclub.com/resourc
 Submit this at [Blueprint](https://blueprint.hackclub.com/)!
 
 ## 3D Model
-![Blinky Board 3D Model](https://hc-cdn.hel1.your-objectstorage.com/s/v3/8007726a751beb86_image.png)
+![Blinky Board 3D Model](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/8007726a751beb86_image.png)
 
 ## PCB
-![Blinky Board PCB](https://hc-cdn.hel1.your-objectstorage.com/s/v3/25146b2c84a023c9_image.png)
+![Blinky Board PCB](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/25146b2c84a023c9_image.png)
 
 ## Schematic
 
-![Blinky Board Schematic](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e5a7d5d24b380305_image.png)
+![Blinky Board Schematic](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/e5a7d5d24b380305_image.png)
 
 ## Components Used
 
